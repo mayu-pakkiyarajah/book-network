@@ -1,5 +1,6 @@
 package com.mayu.book.auth;
 
+import jakarta.mail.MessagingException;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ public class AuthenticationController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<?> register(
             @RequestBody @Valid RegistrationRequest request
-    ) {
+    ) throws MessagingException {
         service.register(request);
         return ResponseEntity.accepted().build();
     }
