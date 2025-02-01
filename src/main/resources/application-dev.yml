@@ -36,4 +36,6 @@ application:
       expiration: 8640000
   mailing:
     frontend:
-      activationUrl: http://localhost:4200/activate-account
+      activationUrl: http://localhost:4200/activate-
+server:
+  port: 8080
