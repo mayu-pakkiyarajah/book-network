@@ -1,5 +1,6 @@
 package com.mayu.book.auth;
 
+import com.mayu.book.email.EmailService;
 import com.mayu.book.role.RoleRepository;
 import com.mayu.book.user.Token;
 import com.mayu.book.user.TokenRepository;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
+
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +23,7 @@ public class AuthenticationService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final TokenRepository tokenRepository;
+    private final EmailService emailService;
 
     public void register(RegistrationRequest request) {
 
@@ -39,7 +41,6 @@ public class AuthenticationService {
                 .build();
 
         userRepository.save(user);
-
         sendValidationEmail(user);
     }
 
