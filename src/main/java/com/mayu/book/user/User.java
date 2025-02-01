@@ -93,4 +93,7 @@ public class User implements UserDetails, Principal {
     public boolean isEnabled() {
         return enabled;
     }
+
+    public String firstName() {
+    return firstName;}
 }

@@ -56,7 +56,7 @@ public class AuthenticationService {
 
         emailService.sendEmail(
                 user.getEmail(),
-                user.getFirstName(),
+                user.firstName(),
                 EmailTemplateName.ACTIVATE_ACCOUNT,
                 activationUrl,
                 newToken,
@@ -72,7 +72,7 @@ public class AuthenticationService {
         var token = Token.builder()
                 .token(generatedToken)
                 .createdAt(LocalDateTime.now())
-                .expiresAt(LocalDateTime.now().plusMinutes(15))
+                .expiresAt(LocalDateTime.now().plusMinutes(5))
                 .user(user)
                 .build();
 
@@ -84,7 +84,7 @@ public class AuthenticationService {
     private String activationToken(int length) {
 
         String characters = "0123456789";
-        StringBuilder tokenBuilder = new StringBuilder(length);
+        StringBuilder tokenBuilder = new StringBuilder();
         SecureRandom secureRandom = new SecureRandom();
 
         for (int i = 0; i < length; i++) {
