@@ -1,12 +1,15 @@
 package com.mayu.book.auth;
 
 import com.mayu.book.email.EmailService;
+import com.mayu.book.email.EmailTemplateName;
 import com.mayu.book.role.RoleRepository;
 import com.mayu.book.user.Token;
 import com.mayu.book.user.TokenRepository;
 import com.mayu.book.user.User;
 import com.mayu.book.user.UserRepository;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +28,10 @@ public class AuthenticationService {
     private final TokenRepository tokenRepository;
     private final EmailService emailService;
 
-    public void register(RegistrationRequest request) {
+    @Value("${application.mailing.frontend.activationUrl}")
+    private String activationUrl;
+
+    public void register(RegistrationRequest request) throws MessagingException {
 
         var userRole = roleRepository.findByName("USER")
                 .orElseThrow(() -> new IllegalStateException("User not found"));
@@ -44,9 +50,18 @@ public class AuthenticationService {
         sendValidationEmail(user);
     }
 
-    private void sendValidationEmail(User user) {
+    private void sendValidationEmail(User user) throws MessagingException {
         
         var newToken = generateAndSaveActivationToken(user);
+
+        emailService.sendEmail(
+                user.getEmail(),
+                user.getFirstName(),
+                EmailTemplateName.ACTIVATE_ACCOUNT,
+                activationUrl,
+                newToken,
+                "Account activation"
+        );
 
     }
 
