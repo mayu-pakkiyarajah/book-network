@@ -23,7 +23,8 @@ public class BookNetworkBackendApplication {
 		return args -> {
 			if (roleRepository.findByName("USER").isPresent()) {
 				roleRepository.save(
-						Role.builder().name("USER").build()
+						Role.builder().name("USER")
+								.build()
 				);
 			}
 		};
