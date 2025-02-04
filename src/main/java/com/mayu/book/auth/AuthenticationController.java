@@ -3,6 +3,7 @@ package com.mayu.book.auth;
 import jakarta.mail.MessagingException;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
