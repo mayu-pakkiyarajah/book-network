@@ -1,5 +1,7 @@
 package com.mayu.book.user;
 
+import com.mayu.book.book.Book;
+import com.mayu.book.history.BookTransactionHistory;
 import com.mayu.book.role.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -42,6 +44,12 @@ public class User implements UserDetails, Principal {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
+
+    @OneToMany(mappedBy = "book")
+    private List<BookTransactionHistory> histories;
 
     @CreatedDate
     @Column(nullable = false,updatable = false)
