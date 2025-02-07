@@ -1,4 +1,4 @@
-package com.mayu.book.book;
+package com.mayu.book.feedback;
 
 import com.mayu.book.common.BaseEntity;
 import jakarta.persistence.*;
@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
 @Getter
@@ -15,13 +16,9 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Book extends BaseEntity {
+@EntityListeners(AuditingEntityListener.class)
+public class Feedback extends BaseEntity {
 
-    private String title;
-    private String authorName;
-    private String isbn;
-    private String synopsis;
-    private String bookCover;
-    private boolean archived;
-    private boolean shareable;
+    private Double note;
+    private String comment;
 }
