@@ -2,6 +2,7 @@ package com.mayu.book.book;
 
 
 import com.mayu.book.user.User;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,8 @@ public class BookService {
     }
 
     public BookResponse findById(Integer bookId) {
-        return null;
+        return bookRepository.findById(bookId)
+                .map(bookMapper::toBookResponse)
+                .orElseThrow(()-> new EntityNotFoundException("No book find with your ID : " + bookId));
     }
 }
