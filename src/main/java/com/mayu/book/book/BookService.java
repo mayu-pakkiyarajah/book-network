@@ -20,4 +20,8 @@ public class BookService {
         book.setOwner(user);
         return bookRepository.save(book).getId();
     }
+
+    public BookResponse findById(Integer bookId) {
+        return null;
+    }
 }
