@@ -27,4 +27,8 @@ public class BookService {
                 .map(bookMapper::toBookResponse)
                 .orElseThrow(()-> new EntityNotFoundException("No book find with your ID : " + bookId));
     }
+
+    public PageResponse<BookResponse> findAllBooks(int page, int size, Authentication connectedUser) {
+        return null;
+    }
 }
