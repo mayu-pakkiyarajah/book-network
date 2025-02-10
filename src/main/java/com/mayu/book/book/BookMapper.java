@@ -1,5 +1,6 @@
 package com.mayu.book.book;
 
+import com.mayu.book.history.BookTransactionHistory;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,6 +29,18 @@ public class BookMapper {
                 .shareable(book.isShareable())
                 .owner(book.getOwner().getName())
                 //.cover()
+                .build();
+    }
+
+    public BorrowedBookResponse toBorrowedBookResponse(BookTransactionHistory bookTransactionHistory) {
+
+        return BorrowedBookResponse.builder()
+                .id(bookTransactionHistory.getBook().getId())
+                .title(bookTransactionHistory.getBook().getTitle())
+                .authorName(bookTransactionHistory.getBook().getAuthorName())
+                .isbn(bookTransactionHistory.getBook().getIsbn())
+                .rate(bookTransactionHistory.getBook().getRate())
+                .returnApproved(bookTransactionHistory.isReturnApproved())
                 .build();
     }
 }
