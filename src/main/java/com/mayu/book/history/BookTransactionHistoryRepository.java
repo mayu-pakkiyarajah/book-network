@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Optional;
 
 
 public interface BookTransactionHistoryRepository extends JpaRepository<BookTransactionHistory, Integer> {
@@ -40,5 +41,5 @@ public interface BookTransactionHistoryRepository extends JpaRepository<BookTran
             AND transaction.returned = false
             AND transaction.returnApproved = false
 """)
-    BookTransactionHistory findByBookIdAndUserId(Integer bookId, Integer userId);
+    Optional<BookTransactionHistory> findByBookIdAndUserId(Integer bookId, Integer userId);
 }
