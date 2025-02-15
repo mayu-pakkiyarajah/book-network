@@ -154,11 +154,11 @@ public class BookService {
         if (isAlreadyBorrowed) {
             throw new OperationNotPermittedException("Requested book is already borrowed");
         }
-        BookTransactionHistory bookTransactionHistory = BookTransactionHistory().builder()
+        BookTransactionHistory bookTransactionHistory = BookTransactionHistory.builder()
                 .user(user)
                 .book(book)
                 .returned(false)
-                .returnedApproved(false)
+                .returnApproved(false)
                 .build();
         return bookTransactionHistoryRepository.save(bookTransactionHistory).getId();
     }
