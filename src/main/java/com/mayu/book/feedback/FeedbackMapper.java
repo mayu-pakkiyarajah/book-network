@@ -1,7 +1,9 @@
 package com.mayu.book.feedback;
 
 import com.mayu.book.book.Book;
+import org.springframework.stereotype.Service;
 
+@Service
 public class FeedbackMapper {
 
     public Feedback toFeedback(FeedbackRequest request) {
