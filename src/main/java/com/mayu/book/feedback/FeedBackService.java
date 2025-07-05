@@ -43,7 +43,7 @@ public class FeedBackService {
         User user = ((User) connectedUser.getPrincipal());
         Page<Feedback> feedbacks = feedbackRepository.findAllByBookId(bookId, pageable);
         List<FeedbackResponse> feedbackResponses = feedbacks.stream()
-                .map(f -> feedbackMapper.toFeebackResponse(f, user.getId()))
+                .map(f -> feedbackMapper.toFeedbackResponse(f, user.getId()))
                 .toList();
         return new PageResponse<>(
                 feedbackResponses,

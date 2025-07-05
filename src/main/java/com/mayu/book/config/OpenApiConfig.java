@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
@@ -18,6 +19,10 @@ import io.swagger.v3.oas.annotations.servers.Server;
                 description = "OpenApi documentation for spring security",
                 title = "OpenApi specification - Mayuravel",
                 version = "1.0",
+                license = @License(
+                        name = "license name",
+                        url = "https://someurl.com"
+                ),
                 termsOfService = "Terms of service"
         ),
         servers = {

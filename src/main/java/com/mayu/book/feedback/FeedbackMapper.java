@@ -21,7 +21,7 @@ public class FeedbackMapper {
                 .build();
     }
 
-    public FeedbackResponse toFeebackResponse(Feedback feedback, Integer id) {
+    public FeedbackResponse toFeedbackResponse(Feedback feedback, Integer id) {
         return FeedbackResponse.builder()
                 .note(feedback.getNote())
                 .comment(feedback.getComment())

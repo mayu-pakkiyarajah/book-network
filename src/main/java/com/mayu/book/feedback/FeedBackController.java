@@ -16,6 +16,11 @@ public class FeedBackController {
 
     private final FeedBackService service;
 
+    @GetMapping
+    public void hello(){
+        System.out.println("hello");
+    }
+
     @PostMapping
     public ResponseEntity<Integer> saveFeedback(
             @Valid @RequestBody FeedbackRequest request,
